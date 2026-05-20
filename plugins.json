@@ -1,0 +1,10 @@
+[
+  "plugins/demo.js",
+  "plugins/farm.js",
+  "plugins/bag.js",
+  "plugins/bank.js",
+  "plugins/market1.js",
+  "plugins/kitchen.js"
+]
+
+

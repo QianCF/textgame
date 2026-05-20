@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>文字游戏框架</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="./vue.js"></script>
+    <script src="./engine.js"></script>
+    <script>
+      // 加载插件列表，然后按顺序注入 <script src="...">
+      (async function bootstrap() {
+        try {
+          const res = await fetch("./plugins.json", { cache: "no-store" });
+          if (!res.ok) throw new Error("加载 plugins.json 失败: " + res.status);
+          const list = await res.json();
+          if (!Array.isArray(list)) throw new Error("plugins.json 必须是数组");
+
+          await Game.加载插件(list);
+          Game.启动();
+        } catch (e) {
+          document.getElementById("app").innerText =
+            "启动失败：\n" + (e && e.stack ? e.stack : String(e));
+        }
+      })();
+    </script>
+  </body>
+</html>
+
+
+
